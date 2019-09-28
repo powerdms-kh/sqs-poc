@@ -1,0 +1,17 @@
+version: "3.0"
+services:
+  api:
+    build: .
+    ports:
+    - "443:9443"
+    - "80:80"
+    links:
+    - sqs
+    environment:
+    - AWS_ACCESS_KEY_ID=x
+    - AWS_SECRET_ACCESS_KEY=x
+  sqs:
+    image: "roribio16/alpine-sqs"
+    ports:
+    - "9325:9325"
+    - "9324:9324"
